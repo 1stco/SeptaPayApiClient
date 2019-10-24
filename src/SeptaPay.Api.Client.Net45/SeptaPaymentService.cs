@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Net.Http;
 using SeptaPay.Api.Client.Net45.Infrastructure;
 using SeptaPay.Api.Client.Net45.Models;
 using SeptaPay.Api.Client.Net45.Extensions;
-using System.Net.Http;
 
 namespace SeptaPay.Api.Client.Net45 {
-
     /// <summary>
     /// Payment Services provided by SeptaPay API
     /// </summary>
@@ -19,7 +18,8 @@ namespace SeptaPay.Api.Client.Net45 {
         /// </summary>
         public SeptaPaymentService() {
             _httpClient = new HttpClient() {
-                BaseAddress = new Uri(GlobalConstants.__CLIENT_API_URL)
+                BaseAddress = new Uri(GlobalConstants
+                                .__CLIENT_API_URL)
             };
         }
 
