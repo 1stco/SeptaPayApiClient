@@ -5,8 +5,7 @@ namespace SeptaPay.Api.Client.Net45.Models {
         public bool Result { get; set; }
 
         public static VerifyApiKeyResult Ok(bool result) {
-            return new VerifyApiKeyResult
-            {
+            return new VerifyApiKeyResult {
                 Result = result,
                 Success = true
             };

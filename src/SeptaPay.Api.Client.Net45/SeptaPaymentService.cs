@@ -11,14 +11,14 @@ namespace SeptaPay.Api.Client.Net45 {
     /// </summary>
     public class SeptaPaymentService {
 
-        private readonly HttpClient _client;
+        private readonly HttpClient _httpClient;
 
         /// <summary>
         /// Instantinate the HttpClient class-wide.
         /// If you want to control HttpClient's requets lifetime yourself, Use the second constructor.
         /// </summary>
         public SeptaPaymentService() {
-            _client = new HttpClient() {
+            _httpClient = new HttpClient() {
                 BaseAddress = new Uri(GlobalConstants.__CLIENT_API_URL)
             };
         }
@@ -29,8 +29,8 @@ namespace SeptaPay.Api.Client.Net45 {
         /// <param name="httpClient">Your instance of [HttpClient]</param>
         public SeptaPaymentService(HttpClient httpClient) {
             httpClient.CheckArgumentIsNull(nameof(httpClient));
-            _client = httpClient;
-            _client.BaseAddress = new Uri(GlobalConstants.__CLIENT_API_URL);
+            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(GlobalConstants.__CLIENT_API_URL);
         }
 
         private const string ENDPOINT_NewEpayRequest = "service/NewEpayRequest";
@@ -42,13 +42,12 @@ namespace SeptaPay.Api.Client.Net45 {
         /// <param name="request">[EPayRequest] model to create.</param>
         /// <returns>Payment Url and Payment Token.</returns>
         public EPayRequestResult CreateEpayRequest(Guid terminalId, string apiKey, EPayRequest request) {
-            var client = new HttpRestClient<EPayRequest, EPayRequestResult>(_client, ENDPOINT_NewEpayRequest);
+            var client = new HttpRestClient<EPayRequest, EPayRequestResult>(_httpClient, ENDPOINT_NewEpayRequest);
             client.WithApiKey(apiKey);
             client.WithTerminalId(terminalId);
 
             try {
-                var result = client.PostJson(request);
-                return result;
+                return client.PostJson(request);
             }
             catch(Exception ex) {
                 return SeptaOperationResult.FailWith<EPayRequestResult>(ex);
@@ -63,12 +62,11 @@ namespace SeptaPay.Api.Client.Net45 {
         /// <param name="token"></param>
         /// <returns></returns>
         public EPayRequestCheckResult CheckEPayRequest(string apiKey, string token) {
-            var client = new HttpRestClient<string, EPayRequestCheckResult>(_client, ENDPOINT_CheckEpayRequest);
+            var client = new HttpRestClient<string, EPayRequestCheckResult>(_httpClient, ENDPOINT_CheckEpayRequest);
             client.WithApiKey(apiKey);
 
             try {
-                var result = client.PostJson(token);
-                return result;
+                return client.PostJson(token);
             }
             catch(Exception ex) {
                 return SeptaOperationResult.FailWith<EPayRequestCheckResult>(ex);
@@ -84,7 +82,7 @@ namespace SeptaPay.Api.Client.Net45 {
         public VerifyApiKeyResult VerifyApiKey(string apiKey) {
             apiKey.CheckReferenceIsNull(nameof(apiKey));
 
-            var client = new HttpRestClient<string, bool>(_client, ENDPOINT_VerifyApiKey);
+            var client = new HttpRestClient<string, bool>(_httpClient, ENDPOINT_VerifyApiKey);
             client.WithApiKey(apiKey);
 
             try {
@@ -103,61 +101,96 @@ namespace SeptaPay.Api.Client.Net45 {
         /// <param name="terminalId">Terminal access key</param>
         /// <param name="apiKey">User's (Divider) [ApiKey]</param>
         /// <param name="request">[EPayRequest] model to create</param>
-        /// <returns></returns>
-        public EPayRequestResult CreateDivideEPayRequest(
-            Guid terminalId, 
+        /// <returns>Payment Token and Url</returns>
+        public EPayRequestResult CreateDivideEPayRequest(Guid terminalId, 
             string apiKey,
-            DividedEPayRequest request)
+            DividedEPayRequest request) 
         {
             request.CheckArgumentIsNull(nameof(request));
             apiKey.CheckArgumentIsNull(nameof(apiKey));
 
             var client = new HttpRestClient<DividedEPayRequest, EPayRequestResult>
-                (_client, ENDPOINT_NewDivideEpayRequest);
+                (_httpClient, ENDPOINT_NewDivideEpayRequest);
+
             client.WithApiKey(apiKey);
             client.WithTerminalId(terminalId);
-            var result = client.PostJson(request);
 
-            return result;
+            try {
+                return client.PostJson(request);
+            }
+            catch(Exception ex) {
+                return SeptaOperationResult.FailWith<EPayRequestResult>(ex);
+            }
         }
 
 
         private const string ENDPOINT_UnblockAmount = "service/UnblockAmount";
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public UnblockAmountResult UnblockAmount(string apiKey, UnblockAmountRequest request) {
+
             apiKey.CheckArgumentIsNull(nameof(apiKey));
             request.CheckArgumentIsNull(nameof(request));
 
-            var client = new HttpRestClient<UnblockAmountRequest, UnblockAmountResult>(_client, ENDPOINT_UnblockAmount);
+            var client = new HttpRestClient<UnblockAmountRequest, UnblockAmountResult>
+                (_httpClient, ENDPOINT_UnblockAmount);
             client.WithApiKey(apiKey);
-            var result = client.PostJson(request);
 
-            return result;
+            try {
+                var svcResult = client.PostJson(request);
+                return UnblockAmountResult.Ok(svcResult.UnblockedAmount);
+            }
+            catch(Exception ex) {
+                return SeptaOperationResult.FailWith<UnblockAmountResult>(ex);
+            }
         }
 
         private const string ENDPOINT_CancelAmount = "service/CancelAmount";
-        public CancelResult CancelAmount(string apiKey, CancelRequest request) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public CancelAmountResult CancelAmount(string apiKey, CancelAmountRequest request) {
+
             apiKey.CheckArgumentIsNull(nameof(apiKey));
             request.CheckArgumentIsNull(nameof(request));
 
-            var client = new HttpRestClient<CancelRequest, CancelResult>(_client, ENDPOINT_CancelAmount);
+            var client = new HttpRestClient<CancelAmountRequest, CancelAmountResult>
+                (_httpClient, ENDPOINT_CancelAmount);
             client.WithApiKey(apiKey);
-            var result = client.PostJson(request);
 
-            return result;
+            try {
+                var svcResult = client.PostJson(request);
+                return CancelAmountResult.Ok(svcResult.CancelledAmount);
+            }
+            catch(Exception ex) {
+                return CancelAmountResult.Failed(ex);
+            }
         }
 
         private const string ENDPOINT_CancelPayment = "service/CancelPayment";
 
-        public bool CancelPayment(string apiKey, string token) {
+        public CancelPaymentResult CancelPayment(string apiKey, string token) {
+
             apiKey.CheckArgumentIsNull(nameof(apiKey));
             token.CheckArgumentIsNull(nameof(token));
 
-            var client = new HttpRestClient<string, bool>(_client, ENDPOINT_CancelPayment);
+            var client = new HttpRestClient<string, bool>(_httpClient, ENDPOINT_CancelPayment);
             client.WithApiKey(apiKey);
-            var result = client.PostJson(token);
 
-            return result;
+            try {
+                var result = client.PostJson(token);
+                return CancelPaymentResult.Ok(result);
+            }
+            catch(Exception ex) {
+                return CancelPaymentResult.Failed(ex);
+            }
         }
 
     }

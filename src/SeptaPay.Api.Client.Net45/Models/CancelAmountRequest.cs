@@ -1,5 +1,5 @@
 ﻿namespace SeptaPay.Api.Client.Net45.Models {
-    public class CancelRequest: SeptaOperationResult {
+    public class CancelAmountRequest: SeptaOperationResult {
         public string ShebaNo { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
