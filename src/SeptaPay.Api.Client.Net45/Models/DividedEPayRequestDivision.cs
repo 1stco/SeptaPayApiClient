@@ -1,4 +1,4 @@
-﻿namespace SeptaPay.Api.Client.Net4.Models {
+﻿namespace SeptaPay.Api.Client.Net45.Models {
     public class DividedEPayRequestDivision {
         public string ApiKey { get; set; }
         public decimal Amount { get; set; }

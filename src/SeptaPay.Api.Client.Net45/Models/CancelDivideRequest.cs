@@ -1,5 +1,5 @@
-﻿namespace SeptaPay.Api.Client.Net4.Models {
-    public class CancelDivideRequest {
+﻿namespace SeptaPay.Api.Client.Net45.Models {
+    public class CancelDivideRequest: SeptaOperationResult {
         public string UserApiKey { get; set; }
         public string InvoiceNumber { get; set; }
         public decimal DividerAmount { get; set; }

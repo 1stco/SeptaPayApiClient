@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SeptaPay.Api.Client.Net4")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SeptaPay.Api.Client.Net45")]
+[assembly: AssemblyDescription("SeptaPay payment services API client for .NET framework 4.5")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SeptaPay.Api.Client.Net4")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("1st co")]
+[assembly: AssemblyProduct("SeptaPay.Api.Client.Net45")]
+[assembly: AssemblyCopyright("Copyright ©  2019 1st co")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

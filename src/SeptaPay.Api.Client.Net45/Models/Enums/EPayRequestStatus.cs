@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SeptaPay.Api.Client.Net4.Models.Enums
-{
+namespace SeptaPay.Api.Client.Net45.Models.Enums {
     public enum EPayRequestStatus {
         [Display(Name = "آغاز شده")]
         Initiated = 0,

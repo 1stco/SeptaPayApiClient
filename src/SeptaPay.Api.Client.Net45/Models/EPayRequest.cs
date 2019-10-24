@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace SeptaPay.Api.Client.Net4.Models {
-    public class EPayRequest {
+namespace SeptaPay.Api.Client.Net45.Models {
+    public class EPayRequest: SeptaOperationResult {
         public string InvoiceNumber { get; set; }
         public DateTime InvoiceDate { get; set; }
         public int ExpiresAfterDays { get; set; }

@@ -1,8 +1,8 @@
 ﻿using System;
-using SeptaPay.Api.Client.Net4.Models.Enums;
+using SeptaPay.Api.Client.Net45.Models.Enums;
 
-namespace SeptaPay.Api.Client.Net4.Models {
-    public class EPayRequestCheckResult {
+namespace SeptaPay.Api.Client.Net45.Models {
+    public class EPayRequestCheckResult: SeptaOperationResult {
 
         public EPayRequestCheckResult() { }
 
@@ -11,7 +11,6 @@ namespace SeptaPay.Api.Client.Net4.Models {
             RequestStatus = result.Status;
             VerifyDate = result.VerifyDate;
         }
-
 
         public string BankReferenceId { get; set; }
         public EPayRequestStatus RequestStatus { get; set; }

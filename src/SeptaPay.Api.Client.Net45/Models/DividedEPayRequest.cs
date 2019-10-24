@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SeptaPay.Api.Client.Net4.Models {
-    public class DividedEPayRequest {
+namespace SeptaPay.Api.Client.Net45.Models {
+    public class DividedEPayRequest: SeptaOperationResult {
         public string InvoiceNumber { get; set; }
         public DateTime InvoiceDate { get; set; }
         public ushort ExpiresAfterDays { get; set; }
