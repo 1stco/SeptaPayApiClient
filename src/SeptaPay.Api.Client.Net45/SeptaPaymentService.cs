@@ -126,10 +126,10 @@ namespace SeptaPay.Api.Client.Net45 {
 
         private const string ENDPOINT_UnblockAmount = "service/UnblockAmount";
         /// <summary>
-        /// 
+        /// Unblock amount of an [EPayRequest]
         /// </summary>
-        /// <param name="apiKey"></param>
-        /// <param name="request"></param>
+        /// <param name="apiKey">Divider User [ApiKey]</param>
+        /// <param name="request">Divide Unblock amount request model</param>
         /// <returns></returns>
         public UnblockAmountResult UnblockAmount(string apiKey, UnblockAmountRequest request) {
 
@@ -151,10 +151,10 @@ namespace SeptaPay.Api.Client.Net45 {
 
         private const string ENDPOINT_CancelAmount = "service/CancelAmount";
         /// <summary>
-        /// 
+        /// Cancel the payment amount and Refund it's amount
         /// </summary>
-        /// <param name="apiKey"></param>
-        /// <param name="request"></param>
+        /// <param name="apiKey">Divider [ApiKey]</param>
+        /// <param name="request">Cancel amount request model</param>
         /// <returns></returns>
         public CancelAmountResult CancelAmount(string apiKey, CancelAmountRequest request) {
 
@@ -175,7 +175,12 @@ namespace SeptaPay.Api.Client.Net45 {
         }
 
         private const string ENDPOINT_CancelPayment = "service/CancelPayment";
-
+        /// <summary>
+        /// Cancel payment based on the given Token.
+        /// </summary>
+        /// <param name="apiKey">Divider [ApiKey]</param>
+        /// <param name="token">Payment token</param>
+        /// <returns>A boolean value representing if cancel process is successful or not.</returns>
         public CancelPaymentResult CancelPayment(string apiKey, string token) {
 
             apiKey.CheckArgumentIsNull(nameof(apiKey));

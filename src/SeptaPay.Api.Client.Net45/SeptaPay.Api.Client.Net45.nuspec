@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>SeptaPay.Api.Client.45</id>
+    <id>SeptaPay.Api.Client.Net45</id>
     <version>1.0.0</version>
-    <title>SeptaPay API client</title>
+    <title>SeptaPay API Client for .NET 4.5</title>
     <authors>Iman Nemati</authors>
     <owners>1st co</owners>
     <licenseUrl>https://github.com/1stco/SeptaPayApiClient/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/1stco/SeptaPayApiClient</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>SeptaPay payment services API client</description>
-    <releaseNotes>Initial release of payment services for SeptaPay</releaseNotes>
+    <description>SeptaPay payment API client for .NET 4.5</description>
+    <releaseNotes>This package contains API methods for SeptaPay payment services.</releaseNotes>
     <copyright>Copyright 2019 1st co</copyright>
     <tags>payment</tags>
   </metadata>

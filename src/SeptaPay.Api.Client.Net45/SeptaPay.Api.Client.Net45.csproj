@@ -71,8 +71,8 @@
     <Compile Include="Infrastructure\IHttpRestClient.cs" />
     <Compile Include="Models\CancelDivideRequest.cs" />
     <Compile Include="Models\CancelPaymentResult.cs" />
-    <Compile Include="Models\CancelRequest.cs" />
-    <Compile Include="Models\CancelResult.cs" />
+    <Compile Include="Models\CancelAmountRequest.cs" />
+    <Compile Include="Models\CancelAmountResult.cs" />
     <Compile Include="Models\CheckStatusResult.cs" />
     <Compile Include="Models\DividedEPayRequest.cs" />
     <Compile Include="Models\DividedEPayRequestDivision.cs" />
