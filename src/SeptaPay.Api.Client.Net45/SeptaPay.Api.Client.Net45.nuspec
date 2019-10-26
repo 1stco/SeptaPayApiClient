@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SeptaPay.Api.Client.Net45</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>SeptaPay API Client for .NET 4.5</title>
     <authors>Iman Nemati</authors>
     <owners>1st co</owners>
