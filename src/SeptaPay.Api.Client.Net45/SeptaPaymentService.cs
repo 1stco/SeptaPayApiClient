@@ -47,7 +47,9 @@ namespace SeptaPay.Api.Client.Net45 {
             client.WithTerminalId(terminalId);
 
             try {
-                return client.PostJson(request);
+                var result = client.PostJson(request);
+                result.Success = true;
+                return result;
             }
             catch(Exception ex) {
                 return SeptaOperationResult.FailWith<EPayRequestResult>(ex);
@@ -66,7 +68,9 @@ namespace SeptaPay.Api.Client.Net45 {
             client.WithApiKey(apiKey);
 
             try {
-                return client.PostJson(token);
+                var result = client.PostJson(token);
+                result.Success = true;
+                return result;
             }
             catch(Exception ex) {
                 return SeptaOperationResult.FailWith<EPayRequestCheckResult>(ex);
@@ -86,7 +90,9 @@ namespace SeptaPay.Api.Client.Net45 {
             client.WithApiKey(apiKey);
 
             try {
-                return VerifyApiKeyResult.Ok(client.Post());
+                var result = VerifyApiKeyResult.Ok(client.Post());
+                result.Success = true;
+                return result;
             }
             catch(Exception ex) {
                 return VerifyApiKeyResult.Failed(ex);
@@ -116,7 +122,9 @@ namespace SeptaPay.Api.Client.Net45 {
             client.WithTerminalId(terminalId);
 
             try {
-                return client.PostJson(request);
+                var result = client.PostJson(request);
+                result.Success = true;
+                return result;
             }
             catch(Exception ex) {
                 return SeptaOperationResult.FailWith<EPayRequestResult>(ex);
