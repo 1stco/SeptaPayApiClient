@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SeptaPay.Api.Client.Net45</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>SeptaPay API Client for .NET 4.5</title>
     <authors>Iman Nemati</authors>
     <owners>1st co</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/1stco/SeptaPayApiClient</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>SeptaPay payment API client for .NET 4.5</description>
-    <releaseNotes>This package contains API methods for SeptaPay payment services.</releaseNotes>
+    <releaseNotes>Add PaymentToken for UnblockAmount and CancelAmnount methods.</releaseNotes>
     <copyright>Copyright 2019 1st co</copyright>
     <tags>payment</tags>
   </metadata>
